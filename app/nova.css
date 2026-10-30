@@ -1,0 +1,914 @@
+/* ============================================================================
+   PAPER STAGE — home §1 (intro) + §2 (services)
+   ----------------------------------------------------------------------------
+   A warm paper sheet ruled with three hairlines, a boxy ceramic counter robot
+   on a charcoal pedestal, and two full-height panels that scroll over it.
+   Robot + paper live in a sticky hold; the panels are normal flow on top.
+   ========================================================================== */
+
+.nv {
+  --nv-paper: #efece6;
+  --nv-ink: #141414;
+  --nv-dim: rgba(20, 20, 20, 0.5);
+  --nv-faint: rgba(20, 20, 20, 0.28);
+  --nv-grid: rgba(20, 20, 20, 0.09);
+  --nv-grad: conic-gradient(
+    from 200deg,
+    #ffb347,
+    #ff8a3d 18%,
+    #ff5a5f 34%,
+    #ff3d8b 50%,
+    #ff5a5f 66%,
+    #ff8a3d 82%,
+    #ffb347
+  );
+  position: relative;
+  background: var(--nv-paper);
+  color: var(--nv-ink);
+  font-family: var(--font-grotesk), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- the sticky hold: canvas + guides ------------------------------- */
+.nv-hold {
+  position: sticky;
+  top: 0;
+  z-index: 0;
+  height: 100svh;
+  margin-bottom: -100svh;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.nv-canvas {
+  position: absolute;
+  inset: 0;
+}
+
+.nv-canvas canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.nv-guides {
+  position: absolute;
+  inset: 0;
+}
+
+.nv-guides i {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--nv-grid);
+}
+
+.nv-guides i:nth-child(1) {
+  left: 17%;
+}
+.nv-guides i:nth-child(2) {
+  left: 50%;
+}
+.nv-guides i:nth-child(3) {
+  left: 83%;
+}
+
+/* ---- panels --------------------------------------------------------- */
+.nv-intro,
+.nv-product {
+  position: relative;
+  z-index: 1;
+  height: 100svh;
+  min-height: 620px;
+}
+
+/* ---- §1 prompt box -------------------------------------------------- */
+.nv-prompt {
+  position: absolute;
+  left: 17%;
+  top: 30%;
+  width: 24.4%;
+  max-width: 420px;
+}
+
+.nv-prompt__tab {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--nv-faint);
+  border-bottom: 0;
+  font-size: 40px;
+  line-height: 1;
+  padding-bottom: 18px;
+  color: var(--nv-ink);
+}
+
+.nv-prompt__box {
+  position: relative;
+  padding: 14px 16px 15px;
+  border: 1px solid rgba(20, 20, 20, 0.32);
+  min-height: 74px;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.nv-prompt__text {
+  display: inline;
+  white-space: pre-wrap;
+}
+
+.nv-caret {
+  display: inline-block;
+  width: 6px;
+  height: 11px;
+  margin-left: 2px;
+  vertical-align: -1px;
+  background: var(--nv-ink);
+  animation: nv-caret 1s steps(1, end) infinite;
+}
+
+@keyframes nv-caret {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.nv-corner {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border: 0 solid var(--nv-ink);
+  opacity: 0.9;
+}
+
+.nv-corner--tl {
+  top: -1px;
+  left: -1px;
+  border-top-width: 1px;
+  border-left-width: 1px;
+}
+.nv-corner--tr {
+  top: -1px;
+  right: -1px;
+  border-top-width: 1px;
+  border-right-width: 1px;
+}
+.nv-corner--bl {
+  bottom: -1px;
+  left: -1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+}
+.nv-corner--br {
+  bottom: -1px;
+  right: -1px;
+  border-bottom-width: 1px;
+  border-right-width: 1px;
+}
+
+.nv-prompt__next {
+  margin: 10px 0 0;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.45;
+  color: rgba(20, 20, 20, 0.26);
+}
+
+/* ---- rule + feature list -------------------------------------------- */
+.nv-rule {
+  position: absolute;
+  left: calc(17% + 24.4% + 14px);
+  right: 17%;
+  top: calc(30% + 50px);
+  height: 1px;
+  background: var(--nv-grid);
+}
+
+.nv-features {
+  position: absolute;
+  right: 17%;
+  top: calc(30% + 62px);
+  width: 23%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nv-features li {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 21px;
+  padding-right: 4%;
+  border-bottom: 1px solid var(--nv-grid);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.nv-features li::before {
+  content: '';
+  position: absolute;
+  left: 18%;
+  top: 50%;
+  width: 3px;
+  height: 3px;
+  margin-top: -1.5px;
+  border-radius: 50%;
+  background: var(--nv-ink);
+}
+
+.nv-features li.is-dim {
+  color: var(--nv-dim);
+}
+
+.nv-features li.is-dim::before {
+  background: var(--nv-dim);
+}
+
+/* ---- headline ------------------------------------------------------- */
+.nv-headline {
+  position: absolute;
+  left: 17%;
+  bottom: 13%;
+}
+
+.nv-kicker {
+  margin: 0 0 12px;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--nv-dim);
+}
+
+.nv-headline h1,
+.nv-product__head h2 {
+  margin: 0;
+  font-size: clamp(42px, 5.25vw, 92px);
+  font-weight: 400;
+  line-height: 0.94;
+  letter-spacing: -0.035em;
+}
+
+.nv-line {
+  position: relative;
+  display: inline-block;
+  padding: 0.04em 0.16em 0.1em;
+}
+
+.nv-line::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 2px solid transparent;
+  background: var(--nv-grad) border-box;
+  -webkit-mask:
+    linear-gradient(#000 0 0) padding-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) padding-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+}
+
+.nv-line--a {
+  color: var(--nv-ink);
+}
+
+.nv-line--b {
+  display: block;
+  width: max-content;
+  color: var(--nv-ink);
+}
+
+.nv-line--b::before {
+  background-image: conic-gradient(from 160deg, #ffb347, #ff8a3d 30%, #ff3d8b 62%, #ff8a3d 88%, #ffb347);
+}
+
+.nv-headline h1 .nv-line--a {
+  border-radius: 3px;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 22px), calc(100% - 22px) 100%, 0 100%);
+}
+
+.nv-headline h1 .nv-line--b {
+  margin-top: 0.06em;
+  border-radius: 3px;
+}
+
+/* ---- sub line + scroll ---------------------------------------------- */
+.nv-sub {
+  position: absolute;
+  left: calc(62% + 18px);
+  bottom: 3.6%;
+  width: 26%;
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.42;
+  color: rgba(20, 20, 20, 0.72);
+}
+
+.nv-scroll {
+  position: absolute;
+  right: 3%;
+  bottom: 4%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--nv-ink);
+}
+
+.nv-scroll__arrow {
+  display: grid;
+  place-items: center;
+  animation: nv-bob 2s ease-in-out infinite;
+}
+
+@keyframes nv-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+.nv-rule--bottom {
+  left: 50%;
+  right: 0;
+  top: auto;
+  bottom: 14%;
+}
+
+/* ---- §2 the F-Ex story ---------------------------------------------- */
+.nv-story__top {
+  position: absolute;
+  left: 17%;
+  right: 4%;
+  top: calc(var(--nv-story-top, 108px));
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(20, 20, 20, 0.12);
+}
+
+.nv-eyebrow {
+  margin: 0;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--nv-dim);
+}
+
+.nv-story__count {
+  margin: 0;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  color: var(--nv-dim);
+  font-variant-numeric: tabular-nums;
+}
+
+/* the ring sits right of the headline and owns the rest of the panel */
+.nv-story__stage {
+  position: absolute;
+  left: 42%;
+  right: 2%;
+  top: 132px;
+  bottom: 4%;
+  isolation: isolate;
+  /* 3D children of the ring can escape a parent's depth context — clip here */
+  overflow: hidden;
+  contain: paint;
+}
+
+/* lift the ring off the robot behind it */
+.nv-story__stage::before {
+  content: '';
+  position: absolute;
+  inset: -8%;
+  background: radial-gradient(60% 58% at 50% 52%, rgba(239, 236, 230, 0.97) 0%, rgba(239, 236, 230, 0.78) 56%, rgba(239, 236, 230, 0) 80%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.nv-story__stage .circular-carousel {
+  position: relative;
+  z-index: 1;
+}
+
+.nv-ring {
+  color: var(--nv-ink);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.nv-ring .circular-carousel__title {
+  font-family: var(--font-grotesk), system-ui, sans-serif;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+  text-transform: none;
+}
+
+.nv-ring .circular-carousel__subtitle {
+  margin-top: 2px;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.nv-ring .circular-carousel__caption {
+  left: 50%;
+  right: auto;
+  bottom: 0;
+  width: max-content;
+  max-width: 92%;
+  transform: translateX(-50%);
+  padding: 8px 14px 9px;
+  background: rgba(239, 236, 230, 0.92);
+  border: 1px solid rgba(20, 20, 20, 0.1);
+}
+
+.nv-ring.circular-carousel:focus-visible {
+  box-shadow: inset 0 0 0 1px rgba(20, 20, 20, 0.5);
+}
+
+/* ---- §2 services ---------------------------------------------------- */
+.nv-product {
+  min-height: 660px;
+}
+
+@media (max-height: 780px) and (min-width: 901px) {
+  .nv-product {
+    --nv-story-top: 88px;
+  }
+
+  .nv-story__stage {
+    top: 104px;
+  }
+}
+
+.nv-tabs {
+  position: absolute;
+  left: 17%;
+  right: 0;
+  top: 108px;
+  height: 75px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--nv-grid);
+}
+
+.nv-tabs__strip {
+  display: flex;
+  height: 74px;
+  transform: translate3d(calc(var(--i, 0) * -33vw), 0, 0);
+  transition: transform 0.9s cubic-bezier(0.65, 0, 0.2, 1);
+}
+
+.nv-tab {
+  position: relative;
+  flex: 0 0 33vw;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 0 20px 0 0;
+  border: 0;
+  border-left: 1px solid var(--nv-grid);
+  background: transparent;
+  text-align: left;
+  color: rgba(20, 20, 20, 0.14);
+  transition: color 0.4s ease, opacity 0.5s ease;
+}
+
+.nv-tab__n {
+  display: grid;
+  place-items: center;
+  width: 68px;
+  height: 68px;
+  flex: 0 0 68px;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: inherit;
+}
+
+.nv-tab__label {
+  font-size: 15px;
+  letter-spacing: -0.01em;
+  color: inherit;
+}
+
+.nv-tab .nv-corner {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.nv-tab.is-active {
+  color: var(--nv-ink);
+}
+
+.nv-tab.is-active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 3px;
+  bottom: 3px;
+  border: 1px solid rgba(20, 20, 20, 0.55);
+  pointer-events: none;
+}
+
+.nv-tab.is-active .nv-corner {
+  opacity: 1;
+}
+
+.nv-tab.is-past {
+  opacity: 0;
+}
+
+.nv-tab:not(.is-active):hover {
+  color: rgba(20, 20, 20, 0.55);
+}
+
+.nv-tabs__meter {
+  position: absolute;
+  left: 17%;
+  right: 0;
+  top: 182px;
+  height: 1px;
+  background: var(--nv-grid);
+}
+
+.nv-tabs__meter span {
+  display: block;
+  height: 1px;
+  background: linear-gradient(90deg, #ffb347, #ff8a3d, #ff5a5f, #ff3d8b);
+  transition: width 0.9s cubic-bezier(0.65, 0, 0.2, 1);
+}
+
+.nv-product__head {
+  position: absolute;
+  left: 17%;
+  bottom: 13%;
+  max-width: 46%;
+  isolation: isolate;
+}
+
+/* the robot sits right of the copy — a soft paper wash keeps it legible */
+.nv-product__head::before {
+  content: '';
+  position: absolute;
+  inset: -34px -60px -26px -46px;
+  z-index: -1;
+  background: radial-gradient(120% 100% at 22% 58%, rgba(239, 236, 230, 0.94) 0%, rgba(239, 236, 230, 0.7) 52%, rgba(239, 236, 230, 0) 78%);
+  pointer-events: none;
+}
+
+.nv-product__head h2 {
+  font-size: clamp(30px, 3.05vw, 54px);
+  line-height: 1.04;
+}
+
+.nv-product__head .nv-line--c {
+  border-radius: 3px;
+}
+
+.nv-product__head .nv-line--d {
+  display: block;
+  width: max-content;
+  margin-top: 0.28em;
+}
+
+.nv-dots {
+  margin: 0 0 8px;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  color: var(--nv-dim);
+}
+
+.nv-product__lede {
+  width: 62%;
+  margin: 20px 0 0;
+  font-size: 14.5px;
+  line-height: 1.45;
+  color: rgba(20, 20, 20, 0.72);
+}
+
+.nv-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 22px;
+  padding: 0 20px;
+  height: 34px;
+  border: 1px solid rgba(20, 20, 20, 0.55);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--nv-ink);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.nv-cta:hover {
+  background: var(--nv-ink);
+  color: var(--nv-paper);
+}
+
+.nv-cta span {
+  letter-spacing: 0;
+}
+
+/* ---- right rail ------------------------------------------------------ */
+.nv-rail {
+  position: fixed;
+  right: 40px;
+  top: 50%;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 26px;
+  opacity: 0;
+  transform: translateY(-50%);
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+}
+
+html[data-nova-rail='1'] .nv-rail {
+  opacity: 1;
+}
+
+.nv-rail__dots {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  height: 270px;
+  justify-content: space-between;
+}
+
+.nv-rail__dots i {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: rgba(20, 20, 20, 0.3);
+}
+
+.nv-rail__label {
+  position: absolute;
+  right: calc(100% + 12px);
+  top: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 7px;
+  background: rgba(239, 236, 230, 0.9);
+  border: 1px solid rgba(20, 20, 20, 0.14);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+  transition: top 0.7s cubic-bezier(0.65, 0, 0.2, 1);
+}
+
+.nv-rail__label[data-pos='intro'] {
+  top: 0;
+}
+
+.nv-rail__label[data-pos='product'] {
+  top: 46%;
+}
+
+.nv-rail__menu {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  writing-mode: vertical-rl;
+  color: var(--nv-dim);
+}
+
+.nv-copy {
+  display: contents;
+}
+
+/* ---- the site header, while it sits over paper ----------------------- */
+body[data-paper-hero='1'] [data-site-header] {
+  background: rgba(239, 236, 230, 0.9);
+  backdrop-filter: blur(10px) saturate(1.1);
+  -webkit-backdrop-filter: blur(10px) saturate(1.1);
+  border-bottom-color: rgba(20, 20, 20, 0.1);
+  color: #141414;
+}
+
+body[data-paper-hero='1'] [data-site-header] :is(a, button, span, p, nav) {
+  color: #141414;
+}
+
+body[data-paper-hero='1'] [data-site-header] a:hover,
+body[data-paper-hero='1'] [data-site-header] button:hover {
+  color: #ff5a5f;
+}
+
+/* ---- ≤ 1100px: tighten the ruled layout ----------------------------- */
+@media (max-width: 1100px) {
+  .nv-sub {
+    left: calc(50% + 18px);
+    width: 34%;
+  }
+
+  .nv-headline {
+    bottom: 15%;
+  }
+
+  .nv-features {
+    width: 26%;
+  }
+}
+
+/* ---- ≤ 900px: the robot fills the sheet, copy gets a paper backing --- */
+@media (max-width: 900px) {
+  .nv-guides,
+  .nv-rail,
+  .nv-features,
+  .nv-rule {
+    display: none;
+  }
+
+  .nv-intro,
+  .nv-product {
+    min-height: 560px;
+  }
+
+  .nv-prompt {
+    left: 16px;
+    right: 16px;
+    top: 18%;
+    width: auto;
+    max-width: none;
+  }
+
+  .nv-prompt__box {
+    background: rgba(239, 236, 230, 0.97);
+  }
+
+  .nv-prompt__next {
+    color: rgba(20, 20, 20, 0.34);
+  }
+
+  .nv-copy {
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    bottom: calc(5% + 74px);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+    padding: 12px 14px 14px;
+    background: rgba(239, 236, 230, 0.96);
+  }
+
+  .nv-headline {
+    position: static;
+    width: 100%;
+  }
+
+  .nv-headline h1,
+  .nv-product__head h2 {
+    font-size: clamp(34px, 10vw, 58px);
+  }
+
+  .nv-kicker {
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+
+  .nv-sub {
+    position: static;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    width: 100%;
+    padding: 0;
+    font-size: 13.5px;
+  }
+
+  .nv-scroll {
+    display: none;
+  }
+
+  .nv-rule--bottom {
+    display: block;
+    left: 16px;
+    right: 16px;
+    bottom: 21%;
+  }
+
+  .nv-story__top {
+    left: 16px;
+    right: 16px;
+    top: 92px;
+  }
+
+  .nv-story__stage {
+    left: 0;
+    right: 0;
+    top: 126px;
+    bottom: 49%;
+    overflow: hidden;
+  }
+
+  .nv-story__stage::before {
+    inset: -4%;
+  }
+
+  .nv-ring .circular-carousel__title {
+    font-size: 13.5px;
+  }
+
+  .nv-ring .circular-carousel__caption {
+    padding: 6px 12px 7px;
+  }
+
+  .nv-tab {
+    flex-basis: 78vw;
+  }
+
+  .nv-tab__label {
+    font-size: 13.5px;
+  }
+
+  .nv-tabs__meter {
+    left: 16px;
+    top: 166px;
+  }
+
+  .nv-product__head {
+    left: 16px;
+    right: 16px;
+    bottom: 12%;
+    max-width: none;
+  }
+
+  .nv-product__head {
+    background: rgba(239, 236, 230, 0.96);
+    padding: 12px 14px 14px;
+  }
+
+  .nv-product__head::before {
+    display: none;
+  }
+
+  .nv-product__lede {
+    width: 100%;
+    background-color: transparent;
+    padding: 0;
+  }
+
+  .nv-dots {
+    margin-bottom: 4px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nv-caret,
+  .nv-scroll__arrow {
+    animation: none;
+  }
+
+  .nv-tabs__strip,
+  .nv-rail__label,
+  .nv-tabs__meter span {
+    transition: none;
+  }
+}
